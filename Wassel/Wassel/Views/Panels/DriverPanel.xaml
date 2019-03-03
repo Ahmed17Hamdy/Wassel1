@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customcontrols="clr-namespace:Wassel.CustomViews"
+             xmlns:viewmodel="clr-namespace:Wassel.ViewModel"
+             x:Class="Wassel.Views.Panels.DriverPanel">
+
+    <ContentPage.BindingContext>
+        <viewmodel:RegisterViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid Margin="10,10,10,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="100" WidthRequest="250" Aspect="AspectFit" Source="WasselLogo.PNG" />
+            <StackLayout Padding="5" Orientation="Horizontal" Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="registerdriver_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label x:Name="rgslbl" TextColor="Blue" Text="حساب جديد" />
+                    <Image WidthRequest="40" HeightRequest="20" x:Name="rgstimg" Source="Arch.PNG" IsVisible="True" />
+                </StackLayout>
+                <StackLayout Padding="10,0,10,0"  Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                    <BoxView  Color="Gray" WidthRequest="1" />
+                </StackLayout >
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="login_Tapped" />
+                    </StackLayout.GestureRecognizers>
+                    <Label x:Name="lgnlbl" Text="تسجيل الدخول"/>
+                    <Image WidthRequest="40" HeightRequest="20" x:Name="lgnimg" Source="Arch.PNG" IsVisible="False" />
+                </StackLayout>
+            </StackLayout>
+            <ScrollView x:Name="RegisterPanel" Grid.Row="2">
+                <StackLayout   Grid.Row="2" IsVisible="True" >
+                    <customcontrols:ImageEntry  x:Name="NameEntry"   Image="smartphonecall" HorizontalTextAlignment="Center" Placeholder="الإسم" />
+                    <customcontrols:ImageEntry x:Name="EmailEntry"  Image="email" HorizontalTextAlignment="Center" Placeholder="البريد الإلكترونى" />
+                    <customcontrols:ImageEntry x:Name="CarNumberEntry"   Image="driverlicense"  HorizontalTextAlignment="Center" Placeholder="رقم السيارة"/>
+                    <Picker x:Name="CarTypePicker" ItemsSource="{Binding CarsType}"     SelectedIndexChanged="CarTypeList_SelectedIndexChanged" Title="نوع السيارة"  />
+                    <Picker x:Name="CarModelPicker"   Title="مودل السيارة" SelectedIndexChanged="CarmodelList_SelectedIndexChanged"/>
+                    <customcontrols:ImageEntry x:Name="CountryEntry"   Image="arrow" HorizontalTextAlignment="Center" Placeholder="البلد"/>
+                    <customcontrols:ImageEntry x:Name="CityEntry"  Image="arrow" HorizontalTextAlignment="Center" Placeholder="المدينة"/>
+                    <customcontrols:ImageEntry x:Name="PhoneEntry"    Image="arrow" HorizontalTextAlignment="Center" Placeholder="رقم الهاتف"/>
+                    <customcontrols:ImageEntry x:Name="NatoionalEntry"  Image="arrow" HorizontalTextAlignment="Center" Placeholder="الإقامة"/>
+                    <customcontrols:ImageEntry x:Name="AgeEntry"   Image="arrow" HorizontalTextAlignment="Center" Placeholder="العمر"/>
+                    <customcontrols:ImageEntry x:Name="IdNumberEntry"  Image="arrow" HorizontalTextAlignment="Center" Placeholder="الرقم الشخصي"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Aspect="AspectFit" x:Name="denominationnumberEntry" HeightRequest="60" WidthRequest="60" Source="camera.png"/>
+                        <Label Text="أضف صورة رقم الرخصة" HorizontalOptions="Center">
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String" Android="Cairo-Regular.ttf#Cairo Regular " iOS="Cairo-Regular" />
+                            </Label.FontFamily>
+                        </Label>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="DenominationnumberEntry_Clicked"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <customcontrols:ImageEntry x:Name="passportnumberEntry"  Image="arrow" HorizontalTextAlignment="Center" Placeholder="رقم جواز السفر"/>
+                    <customcontrols:ImageEntry x:Name="nationalityEntry"  Image="arrow" HorizontalTextAlignment="Center" Placeholder="الجنسية"/>
+                    <customcontrols:ImageEntry x:Name="typeEntry"   Image="arrow" HorizontalTextAlignment="Center" Placeholder="النوعية"/>
+                    <customcontrols:ImageEntry x:Name="passwordEntry"  Image="lock"  IsPassword="True" HorizontalTextAlignment="Center" Placeholder="كلمة المرور"/>
+                    <customcontrols:ImageEntry x:Name="confirmpassEntry"  Image="lock" IsPassword="True" HorizontalTextAlignment="Center" Placeholder="تأكيد كلمة المرور"/>
+                    <Button  Clicked="DriverRegisterCommand" BackgroundColor="Blue" BorderColor="Blue" Text="تسجيل" TextColor="White"
+                        BorderRadius="20"/>
+                </StackLayout>
+
+            </ScrollView>
+            <ScrollView x:Name="LoginPanel" IsVisible="False"  Grid.Row="2">
+                <StackLayout  Grid.Row="2" >
+                    <customcontrols:ImageEntry  Text="{Binding name}"   Image="smartphonecall" HorizontalTextAlignment="Center" Placeholder="الإسم" />
+                    <customcontrols:ImageEntry Text="{Binding email}" Image="email" HorizontalTextAlignment="Center" Placeholder="البريد الإلكترونى" />
+                    <customcontrols:ImageEntry Text="{Binding password}" Image="lock"  IsPassword="True" HorizontalTextAlignment="Center" Placeholder="كلمة المرور"/>
+                    <customcontrols:ImageEntry Text="{Binding confirmpass}" Image="lock" IsPassword="True" HorizontalTextAlignment="Center" Placeholder="تأكيد كلمة المرور"/>
+                    <Button  Command="{Binding LoginCommand}" BackgroundColor="Blue" BorderColor="Blue" Text="تسجيل" TextColor="White"
+                        BorderRadius="20"/>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

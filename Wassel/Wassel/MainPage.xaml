@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Wassel"
+             xmlns:googlemaps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             x:Class="Wassel.MainPage">
+
+    <StackLayout>
+        <!-- Place new controls here -->
+        <googlemaps:Map IsShowingUser="True" HeightRequest="200" WidthRequest="350"/>
+    </StackLayout>
+
+</ContentPage>
